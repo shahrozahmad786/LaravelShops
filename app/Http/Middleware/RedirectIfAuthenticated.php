@@ -16,9 +16,16 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
-    {
+    { 
+
+        // Check redirection if admin is login
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+
+            if(Auth::user()->hasRole('admin')){
+                return redirect('/panel-admin');
+            }else{
+                return redirect('/home');
+            }
         }
 
         return $next($request);

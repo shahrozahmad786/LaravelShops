@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\User;
+use App\Profile;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -45,6 +46,14 @@ class UserTableSeeder extends Seeder
 
         ]);
         $user2->roles()->attach($role2->id);
+
+
+        
+        $profile=Profile::create([
+         
+            'user_id'=>$user2->id,  
+           ]);
+   
 
 
     }
